@@ -1,5 +1,6 @@
 {
   "expo": {
+    "scheme":"tinder-clone",
     "name": "tinder-clone",
     "slug": "tinder-clone",
     "version": "1.0.0",
@@ -24,10 +25,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "host.exp.exponent"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "ae673f44-fab9-489c-92eb-a80017ff3bf5"
+      }
     }
   }
 }
