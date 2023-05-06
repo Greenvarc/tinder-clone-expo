@@ -12,8 +12,8 @@ const  AuthContext=createContext({
 
 
 //auth configs
-const config={
-    //expoClientId: 'GOOGLE_GUID.apps.googleusercontent.com',
+export const config={
+    expoClientId: 'GOOGLE_GUID.apps.googleusercontent.com',
     expoClientId: '448560574039-m6evqf3enlodcmc8lerr42fdduncnp3c.apps.googleusercontent.com',
     iosClientId: '448560574039-lq3rbda09a575rhib97469oea6kk2254.apps.googleusercontent.com',
     androidClientId: '448560574039-k2bbn0qcppmfggarqbh8j6kjj4to0k85.apps.googleusercontent.com',
@@ -33,11 +33,14 @@ export const AuthProvider = ({children}) => {
             if(user){
                 //logged in
                 setUser(user);
+                console.log('user is in')
             }
             else{
                 //logged out
                 setUser(null);
+                console.log('user went out')
             }
+            console.log('user is',user)
             setLoadingState(false)
         })
     ,[])
@@ -53,7 +56,7 @@ export const AuthProvider = ({children}) => {
     const [request, response, promptAsync] = Google.useAuthRequest(config);
 
   useEffect(() => {
-    //console.log('started ...')
+    console.log('started ... ')
     setLoading(true)
     if (response?.type === 'success') {
       const { accessToken,idToken } = response?.authentication;
@@ -78,15 +81,23 @@ export const AuthProvider = ({children}) => {
 }, [response]);
 
 //to cash our values
-const memoValue=useMemo(()=>{
-    return {
-        user,
-        loading,
-        error,
-        promptAsync,
-        logout,
-    }
-},[user,loading,error])
+// const memoValue=useMemo(()=>{
+//     return {
+//         user,
+//         loading,
+//         error,
+//         promptAsync,
+//         logout,
+//    }
+// },[user,loading,error])
+
+const memoValue={
+    user,
+    loading,
+    error,
+    promptAsync,
+    logout,
+}
 
 return (
     <AuthContext.Provider value={memoValue}>
